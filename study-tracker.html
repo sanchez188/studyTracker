@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Tracker Pro</title>
+    <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiU3R1ZHkgVHJhY2tlciBQcm8iLCJzaG9ydF9uYW1lIjoiU3R1ZHlUcmFja2VyIiwic3RhcnRfdXJsIjoiLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiM2NjNhYjciLCJ0aGVtZV9jb2xvciI6IiM2NjNhYjciLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M00zUXViM0puTHpJd01EQXZjM1puSWlCMmFXVjNRbTk0UFNJd0lEQWdOVEV5SURRNU1pSStQR05wY21Oc1pTQmplRDBpTWpVMklpQmplVDBpTWpRMklpQnlQU0l5TURBY1NqNXpkSGx1WlQxaVptbHNiRG9qUmpRelFUa3hPejE4UEM5amFYSmpiR1UrUEhCaGRHZ2dkRDBpVFRJMk5TNHhJRFF3TlM0eUxqRWdNakF3TGprZTRRaUlIQTJPREExTGpGZ1ZrNG1NVVV6T1M0MUlEUXlPUzQzVDJWNFAyNWdVV2c0T1RJdEluZ2dVVGQxWW05M1kyUm9URGc1TnpKV2JuUndkSGRaZW5KdWVYRTJVMm95WWtsS0lIdGNiWGxzYjNwc09XeGlWV1pIZUQxSWVscHNlbXQzVTFOck5qSnlhM1p0YzA1Zk9VbGthbVV0Umk1OU1Xc2dNaTQzWXowNU16VXRPRGN5T1RrNUxUZzNNVEkzT1RraWZtZGxibDFZTVRZdE5qZ3RObUppYlRFeUxUUXhNak11YzA5bE1XVTRlVEE1YzJkdFpYTlNabHBvTldOVE5ESjFVMUo0YXpKTGRFSkNNbTV6ZUdOUVNtTjBRek5LWWw0NGJWZGphWFlyWW05dVluUjRWbGgyYzNsU2J6ZHJOVkJvSXprZ0puc2dkRzVpS2ladnduOWZNVWNnWTJGamFHZ2xnMUZ4Y2lNd1BxaXBhSGwxZDFjOU5pb2JtVnpjazE1WkdsdldHeElORzVwTTI0d05DSmNkR2s0WmlzdlBEOTBhR2xwUlRKVk1sWm1MeXdtUG14YVNGNGhWVWRVUXlKY2VXSllVa3hPUVVkeVZuWnZkR0E5UEM5d1lYUm9QajE4YzNabkBnPj0iLCJzaXplcyI6IjUxMng1MTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23663ab7' d='M12 2L2 7v10c0 5.55 3.84 12 9 12s9-6.45 9-12V7l-10-5z'/%3E%3C/svg%3E">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .motivation-card {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease-in;
+        }
+
+        .motivation-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-align: center;
+            color: #444;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 5px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .viola-stat { color: #e74c3c; }
+        .az-stat { color: #3498db; }
+        .conducting-stat { color: #2ecc71; }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        .viola-progress { background: linear-gradient(90deg, #e74c3c, #c0392b); }
+        .az-progress { background: linear-gradient(90deg, #3498db, #2980b9); }
+        .conducting-progress { background: linear-gradient(90deg, #2ecc71, #27ae60); }
+
+        .task-list {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .task-item:hover {
+            transform: translateX(5px);
+        }
+
+        .task-item.completed {
+            opacity: 0.7;
+            text-decoration: line-through;
+        }
+
+        .task-item.viola { border-left-color: #e74c3c; }
+        .task-item.az204 { border-left-color: #3498db; }
+        .task-item.conducting { border-left-color: #2ecc71; }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .task-text {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .task-time {
+            background: #ecf0f1;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .add-task-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .add-task-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            min-width: 300px;
+            max-width: 90vw;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ecf0f1;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .rewards-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .reward-badge {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 5px;
+            font-weight: 600;
+            animation: bounce 2s infinite;
+        }
+
+        .weekly-chart {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            height: 300px;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .notification-permission {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .notification-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 10px; }
+            .header h1 { font-size: 2rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .tabs { flex-direction: column; }
+            .tab { margin-bottom: 5px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎼 Study Tracker Pro</h1>
+            <p style="color: rgba(255,255,255,0.9);">Tu compañero para el éxito musical y profesional</p>
+        </div>
+
+        <div id="notificationPermission" class="notification-permission" style="display: none;">
+            <h3>🔔 Activa las Notificaciones</h3>
+            <p>Recibe recordatorios para mantener tu práctica constante</p>
+            <button class="notification-btn" onclick="requestNotificationPermission()">Activar Notificaciones</button>
+        </div>
+
+        <div class="motivation-card">
+            <div class="motivation-text" id="dailyMotivation">
+                Cargando motivación diaria...
+            </div>
+        </div>
+
+        <div class="rewards-section" id="rewardsSection" style="display: none;">
+            <h3>🏆 ¡Recompensas Ganadas!</h3>
+            <div id="rewardsBadges"></div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('dashboard')">📊 Dashboard</button>
+            <button class="tab" onclick="showTab('viola')">🎻 Viola</button>
+            <button class="tab" onclick="showTab('az204')">💻 AZ-204</button>
+            <button class="tab" onclick="showTab('conducting')">🎼 Dirección</button>
+            <button class="tab" onclick="showTab('analytics')">📈 Análisis</button>
+        </div>
+
+        <div id="dashboard" class="tab-content active">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number viola-stat" id="violaWeeklyHours">0h</div>
+                    <div>Viola esta semana</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill viola-progress" id="violaProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number az-stat" id="azWeeklyHours">0h</div>
+                    <div>AZ-204 esta semana</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill az-progress" id="azProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number conducting-stat" id="conductingWeeklyHours">0h</div>
+                    <div>Dirección esta semana</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill conducting-progress" id="conductingProgress" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-list">
+                <h3>📋 Tareas de Hoy</h3>
+                <div id="todayTasks"></div>
+                <button class="add-task-btn" onclick="openAddTaskModal()">+ Agregar Tarea</button>
+            </div>
+        </div>
+
+        <div id="viola" class="tab-content">
+            <div class="task-list">
+                <h3>🎻 Práctica de Viola</h3>
+                <div id="violaTasks"></div>
+                <button class="add-task-btn" onclick="openAddTaskModal('viola')">+ Agregar Tarea de Viola</button>
+            </div>
+        </div>
+
+        <div id="az204" class="tab-content">
+            <div class="task-list">
+                <h3>💻 Certificación AZ-204</h3>
+                <div id="azTasks"></div>
+                <button class="add-task-btn" onclick="openAddTaskModal('az204')">+ Agregar Tarea AZ-204</button>
+            </div>
+        </div>
+
+        <div id="conducting" class="tab-content">
+            <div class="task-list">
+                <h3>🎼 Dirección de Orquesta</h3>
+                <div id="conductingTasks"></div>
+                <button class="add-task-btn" onclick="openAddTaskModal('conducting')">+ Agregar Tarea de Dirección</button>
+            </div>
+        </div>
+
+        <div id="analytics" class="tab-content">
+            <div class="weekly-chart">
+                <h3>📊 Progreso Semanal</h3>
+                <div class="chart-container" id="weeklyChart"></div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h4>🎯 Objetivos Completados</h4>
+                    <div class="stat-number" id="completedGoals">0%</div>
+                </div>
+                <div class="stat-card">
+                    <h4>🔥 Racha Actual</h4>
+                    <div class="stat-number" id="currentStreak">0</div>
+                    <div>días consecutivos</div>
+                </div>
+                <div class="stat-card">
+                    <h4>⚠️ Área de Mejora</h4>
+                    <div id="improvementArea">Cargando...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para agregar tareas -->
+    <div id="addTaskModal" class="modal">
+        <div class="modal-content">
+            <h3>➕ Agregar Nueva Tarea</h3>
+            <form id="addTaskForm">
+                <div class="form-group">
+                    <label>Descripción:</label>
+                    <input type="text" id="taskDescription" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoría:</label>
+                    <select id="taskCategory">
+                        <option value="viola">🎻 Viola</option>
+                        <option value="az204">💻 AZ-204</option>
+                        <option value="conducting">🎼 Dirección</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Duración (minutos):</label>
+                    <input type="number" id="taskDuration" min="5" max="180" value="30">
+                </div>
+                <div class="form-group">
+                    <label>Hora programada:</label>
+                    <input type="time" id="taskTime">
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button type="submit" class="add-task-btn">Crear Tarea</button>
+                    <button type="button" class="add-task-btn" onclick="closeModal()" style="background: #95a5a6;">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Datos persistentes usando localStorage
+        class StudyTracker {
+            constructor() {
+                this.data = this.loadData();
+                this.initializeDefaultTasks();
+                this.setupNotifications();
+            }
+
+            loadData() {
+                const saved = localStorage.getItem('studyTrackerData');
+                if (saved) {
+                    return JSON.parse(saved);
+                }
+                return {
+                    tasks: [],
+                    completedTasks: [],
+                    weeklyStats: { viola: 0, az204: 0, conducting: 0 },
+                    streak: 0,
+                    lastActivityDate: null,
+                    rewards: [],
+                    settings: { notificationsEnabled: false }
+                };
+            }
+
+            saveData() {
+                localStorage.setItem('studyTrackerData', JSON.stringify(this.data));
+            }
+
+            initializeDefaultTasks() {
+                if (this.data.tasks.length === 0) {
+                    const defaultTasks = [
+                        { id: 1, description: "Escalas con cambio de posición", category: "viola", duration: 10, time: "06:30", completed: false, date: this.getTodayString() },
+                        { id: 2, description: "Técnica específica o repertorio", category: "viola", duration: 15, time: "06:40", completed: false, date: this.getTodayString() },
+                        { id: 3, description: "Lectura a primera vista", category: "viola", duration: 5, time: "06:55", completed: false, date: this.getTodayString() },
+                        { id: 4, description: "Módulos AZ-204 WhizLabs", category: "az204", duration: 30, time: "07:00", completed: false, date: this.getTodayString() },
+                        { id: 5, description: "Laboratorio práctico Azure", category: "az204", duration: 45, time: "20:00", completed: false, date: this.getTodayString() },
+                        { id: 6, description: "Lectura dirección orquestal", category: "conducting", duration: 20, time: "20:45", completed: false, date: this.getTodayString() }
+                    ];
+                    this.data.tasks = defaultTasks;
+                    this.saveData();
+                }
+            }
+
+            getTodayString() {
+                return new Date().toISOString().split('T')[0];
+            }
+
+            addTask(task) {
+                const newTask = {
+                    id: Date.now(),
+                    ...task,
+                    completed: false,
+                    date: this.getTodayString()
+                };
+                this.data.tasks.push(newTask);
+                this.saveData();
+                this.renderTasks();
+            }
+
+            completeTask(taskId) {
+                const task = this.data.tasks.find(t => t.id === taskId);
+                if (task && !task.completed) {
+                    task.completed = true;
+                    this.data.weeklyStats[task.category] += task.duration;
+                    this.checkForRewards(task);
+                    this.updateStreak();
+                    this.saveData();
+                    this.renderAll();
+                    this.showCompletionAnimation();
+                }
+            }
+
+            checkForRewards(task) {
+                const rewards = [];
+                const categoryHours = this.data.weeklyStats[task.category] / 60;
+                
+                if (categoryHours >= 1 && !this.data.rewards.includes(`${task.category}_1h`)) {
+                    rewards.push({ id: `${task.category}_1h`, text: `🎯 Primera hora de ${task.category}!` });
+                }
+                if (categoryHours >= 3 && !this.data.rewards.includes(`${task.category}_3h`)) {
+                    rewards.push({ id: `${task.category}_3h`, text: `🔥 3 horas de ${task.category}!` });
+                }
+
+                rewards.forEach(reward => {
+                    this.data.rewards.push(reward.id);
+                    this.showReward(reward.text);
+                });
+            }
+
+            showReward(text) {
+                const rewardsSection = document.getElementById('rewardsSection');
+                const badgesContainer = document.getElementById('rewardsBadges');
+                
+                const badge = document.createElement('div');
+                badge.className = 'reward-badge';
+                badge.textContent = text;
+                badgesContainer.appendChild(badge);
+                
+                rewardsSection.style.display = 'block';
+                setTimeout(() => {
+                    badge.remove();
+                    if (badgesContainer.children.length === 0) {
+                        rewardsSection.style.display = 'none';
+                    }
+                }, 5000);
+            }
+
+            showCompletionAnimation() {
+                // Crear confetti effect
+                const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const confetti = document.createElement('div');
+                        confetti.style.position = 'fixed';
+                        confetti.style.left = Math.random() * 100 + 'vw';
+                        confetti.style.top = '-10px';
+                        confetti.style.width = '10px';
+                        confetti.style.height = '10px';
+                        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                        confetti.style.borderRadius = '50%';
+                        confetti.style.pointerEvents = 'none';
+                        confetti.style.animation = 'fall 3s linear forwards';
+                        document.body.appendChild(confetti);
+
+                        setTimeout(() => confetti.remove(), 3000);
+                    }, i * 100);
+                }
+
+                // Agregar CSS para la animación de caída
+                if (!document.getElementById('confettiStyle')) {
+                    const style = document.createElement('style');
+                    style.id = 'confettiStyle';
+                    style.textContent = `
+                        @keyframes fall {
+                            to {
+                                transform: translateY(100vh) rotate(360deg);
+                            }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                }
+            }
+
+            updateStreak() {
+                const today = this.getTodayString();
+                const hasCompletedTasksToday = this.data.tasks.some(task => 
+                    task.date === today && task.completed
+                );
+
+                if (hasCompletedTasksToday) {
+                    if (this.data.lastActivityDate === this.getYesterdayString()) {
+                        this.data.streak++;
+                    } else if (this.data.lastActivityDate !== today) {
+                        this.data.streak = 1;
+                    }
+                    this.data.lastActivityDate = today;
+                }
+            }
+
+            getYesterdayString() {
+                const yesterday = new Date();
+                yesterday.setDate(yesterday.getDate() - 1);
+                return yesterday.toISOString().split('T')[0];
+            }
+
+            setupNotifications() {
+                if ('Notification' in window && 'serviceWorker' in navigator) {
+                    if (Notification.permission === 'default') {
+                        document.getElementById('notificationPermission').style.display = 'block';
+                    } else if (Notification.permission === 'granted') {
+                        this.scheduleNotifications();
+                    }
+                }
+            }
+
+            scheduleNotifications() {
+                const today = this.getTodayString();
+                const todayTasks = this.data.tasks.filter(task => task.date === today && !task.completed);
+                
+                todayTasks.forEach(task => {
+                    if (task.time) {
+                        const taskTime = new Date(`${today}T${task.time}`);
+                        const now = new Date();
+                        
+                        if (taskTime > now) {
+                            const delay = taskTime.getTime() - now.getTime();
+                            setTimeout(() => {
+                                new Notification(`🎯 Hora de: ${task.description}`, {
+                                    body: `Duración estimada: ${task.duration} minutos`,
+                                    icon: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath fill="%23663ab7" d="M12 2L2 7v10c0 5.55 3.84 12 9 12s9-6.45 9-12V7l-10-5z"/%3E%3C/svg%3E'
+                                });
+                            }, delay);
+                        }
+                    }
+                });
+            }
+
+            renderAll() {
+                this.renderTasks();
+                this.renderStats();
+                this.renderAnalytics();
+                this.loadDailyMotivation();
+            }
+
+            renderTasks() {
+                const today = this.getTodayString();
+                const todayTasks = this.data.tasks.filter(task => task.date === today);
+
+                // Render today's tasks in dashboard
+                const todayContainer = document.getElementById('todayTasks');
+                todayContainer.innerHTML = '';
+
+                // Render category-specific tasks
+                const violaContainer = document.getElementById('violaTasks');
+                const azContainer = document.getElementById('azTasks');
+                const conductingContainer = document.getElementById('conductingTasks');
+
+                violaContainer.innerHTML = '';
+                azContainer.innerHTML = '';
+                conductingContainer.innerHTML = '';
+
+                todayTasks.forEach(task => {
+                    const taskElement = this.createTaskElement(task);
+                    todayContainer.appendChild(taskElement.cloneNode(true));
+
+                    // Add to category-specific containers
+                    if (task.category === 'viola') {
+                        violaContainer.appendChild(taskElement.cloneNode(true));
+                    } else if (task.category === 'az204') {
+                        azContainer.appendChild(taskElement.cloneNode(true));
+                    } else if (task.category === 'conducting') {
+                        conductingContainer.appendChild(taskElement.cloneNode(true));
+                    }
+                });
+            }
+
+            createTaskElement(task) {
+                const div = document.createElement('div');
+                div.className = `task-item ${task.category} ${task.completed ? 'completed' : ''}`;
+                
+                const categoryEmojis = {
+                    viola: '🎻',
+                    az204: '💻',
+                    conducting: '🎼'
+                };
+
+                div.innerHTML = `
+                    <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''} 
+                           onchange="tracker.completeTask(${task.id})">
+                    <div class="task-text">${categoryEmojis[task.category]} ${task.description}</div>
+                    <div class="task-time">${task.time || ''} • ${task.duration}min</div>
+                `;
+                return div;
+            }
+
+            renderStats() {
+                // Weekly hours
+                document.getElementById('violaWeeklyHours').textContent = 
+                    Math.round(this.data.weeklyStats.viola / 60 * 10) / 10 + 'h';
+                document.getElementById('azWeeklyHours').textContent = 
+                    Math.round(this.data.weeklyStats.az204 / 60 * 10) / 10 + 'h';
+                document.getElementById('conductingWeeklyHours').textContent = 
+                    Math.round(this.data.weeklyStats.conducting / 60 * 10) / 10 + 'h';
+
+                // Progress bars (goals: viola 3h, az204 5h, conducting 2h per week)
+                const violaProgress = Math.min((this.data.weeklyStats.viola / 60) / 3 * 100, 100);
+                const azProgress = Math.min((this.data.weeklyStats.az204 / 60) / 5 * 100, 100);
+                const conductingProgress = Math.min((this.data.weeklyStats.conducting / 60) / 2 * 100, 100);
+
+                document.getElementById('violaProgress').style.width = violaProgress + '%';
+                document.getElementById('azProgress').style.width = azProgress + '%';
+                document.getElementById('conductingProgress').style.width = conductingProgress + '%';
+            }
+
+            renderAnalytics() {
+                const today = this.getTodayString();
+                const todayTasks = this.data.tasks.filter(task => task.date === today);
+                const completedToday = todayTasks.filter(task => task.completed);
+                
+                const completionPercentage = todayTasks.length > 0 ? 
+                    Math.round((completedToday.length / todayTasks.length) * 100) : 0;
+
+                document.getElementById('completedGoals').textContent = completionPercentage + '%';
+                document.getElementById('currentStreak').textContent = this.data.streak;
+
+                // Improvement area
+                const categoryStats = {
+                    viola: this.data.weeklyStats.viola,
+                    az204: this.data.weeklyStats.az204,
+                    conducting: this.data.weeklyStats.conducting
+                };
+
+                const minCategory = Object.keys(categoryStats).reduce((a, b) => 
+                    categoryStats[a] < categoryStats[b] ? a : b);
+
+                const categoryNames = {
+                    viola: 'Práctica de Viola',
+                    az204: 'Certificación AZ-204',
+                    conducting: 'Dirección de Orquesta'
+                };
+
+                document.getElementById('improvementArea').textContent = categoryNames[minCategory];
+
+                // Simple weekly chart
+                this.renderWeeklyChart();
+            }
+
+            renderWeeklyChart() {
+                const chartContainer = document.getElementById('weeklyChart');
+                const viola = this.data.weeklyStats.viola / 60;
+                const az204 = this.data.weeklyStats.az204 / 60;
+                const conducting = this.data.weeklyStats.conducting / 60;
+                
+                chartContainer.innerHTML = `
+                    <div style="display: flex; align-items: end; height: 200px; gap: 20px; padding: 20px;">
+                        <div style="flex: 1; text-align: center;">
+                            <div style="background: #e74c3c; height: ${Math.max(viola * 40, 10)}px; border-radius: 5px; margin-bottom: 10px;"></div>
+                            <div>🎻 Viola</div>
+                            <div style="font-weight: bold;">${viola.toFixed(1)}h</div>
+                        </div>
+                        <div style="flex: 1; text-align: center;">
+                            <div style="background: #3498db; height: ${Math.max(az204 * 40, 10)}px; border-radius: 5px; margin-bottom: 10px;"></div>
+                            <div>💻 AZ-204</div>
+                            <div style="font-weight: bold;">${az204.toFixed(1)}h</div>
+                        </div>
+                        <div style="flex: 1; text-align: center;">
+                            <div style="background: #2ecc71; height: ${Math.max(conducting * 40, 10)}px; border-radius: 5px; margin-bottom: 10px;"></div>
+                            <div>🎼 Dirección</div>
+                            <div style="font-weight: bold;">${conducting.toFixed(1)}h</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            async loadDailyMotivation() {
+                const motivations = [
+                    "🎯 Cada pequeño paso te acerca más a tu meta. ¡Hoy es un gran día para practicar!",
+                    "🎼 La música y la tecnología se combinan en ti. ¡Eres único y talentoso!",
+                    "💪 A los 33 años tienes la experiencia y la determinación. ¡Es tu momento!",
+                    "🎻 Cada escala que practicas te hace mejor músico. ¡La constancia es clave!",
+                    "☁️ Azure espera por ti. Cada concepto aprendido te acerca a la certificación.",
+                    "🎵 Dirigir esa orquesta de niños es inspirador. ¡Estás marcando vidas!",
+                    "🌟 Balancear familia, trabajo y sueños no es fácil, pero lo estás logrando.",
+                    "🔥 Tu racha de constancia está creciendo. ¡No la rompas hoy!",
+                    "🎯 Pequeños momentos, grandes resultados. ¡Cada minuto cuenta!",
+                    "💫 Eres un ejemplo de perseverancia. ¡Tus hijas estarán orgullosas!"
+                ];
+
+                try {
+                    // Intentar obtener motivación online (simulado)
+                    const randomMotivation = motivations[Math.floor(Math.random() * motivations.length)];
+                    document.getElementById('dailyMotivation').textContent = randomMotivation;
+                } catch (error) {
+                    // Fallback a motivaciones locales
+                    const fallbackMotivation = motivations[new Date().getDate() % motivations.length];
+                    document.getElementById('dailyMotivation').textContent = fallbackMotivation;
+                }
+            }
+        }
+
+        // Funciones globales
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function openAddTaskModal(category = '') {
+            document.getElementById('addTaskModal').style.display = 'block';
+            if (category) {
+                document.getElementById('taskCategory').value = category;
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('addTaskModal').style.display = 'none';
+            document.getElementById('addTaskForm').reset();
+        }
+
+        function requestNotificationPermission() {
+            if ('Notification' in window) {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        document.getElementById('notificationPermission').style.display = 'none';
+                        tracker.data.settings.notificationsEnabled = true;
+                        tracker.saveData();
+                        tracker.scheduleNotifications();
+                        
+                        new Notification('¡Notificaciones Activadas! 🎉', {
+                            body: 'Ahora recibirás recordatorios para tus prácticas.',
+                            icon: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath fill="%23663ab7" d="M12 2L2 7v10c0 5.55 3.84 12 9 12s9-6.45 9-12V7l-10-5z"/%3E%3C/svg%3E'
+                        });
+                    }
+                });
+            }
+        }
+
+        // Inicialización
+        let tracker;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            tracker = new StudyTracker();
+            tracker.renderAll();
+
+            // Form submission
+            document.getElementById('addTaskForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const task = {
+                    description: document.getElementById('taskDescription').value,
+                    category: document.getElementById('taskCategory').value,
+                    duration: parseInt(document.getElementById('taskDuration').value),
+                    time: document.getElementById('taskTime').value
+                };
+                
+                tracker.addTask(task);
+                closeModal();
+            });
+
+            // Close modal when clicking outside
+            document.getElementById('addTaskModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+
+            // Update stats every minute
+            setInterval(() => {
+                tracker.renderStats();
+            }, 60000);
+
+            // Reset weekly stats on Monday --
+            const today = new Date();
+            const lastReset = localStorage.getItem('lastWeeklyReset');
+            if (today.getDay() === 1 && (!lastReset || new Date(lastReset).getDay() !== 1)) {
+                tracker.data.weeklyStats = { viola: 0, az204: 0, conducting: 0 };
+                tracker.saveData();
+                localStorage.setItem('lastWeeklyReset', today.toISOString());
+            }
+
+            // Install prompt for PWA
+            let deferredPrompt;
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                
+                // Show install button
+                const installButton = document.createElement('button');
+                installButton.textContent = '📱 Instalar App';
+                installButton.className = 'add-task-btn';
+                installButton.style.position = 'fixed';
+                installButton.style.bottom = '20px';
+                installButton.style.right = '20px';
+                installButton.style.zIndex = '1000';
+                
+                installButton.addEventListener('click', () => {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            installButton.remove();
+                        }
+                        deferredPrompt = null;
+                    });
+                });
+                
+                document.body.appendChild(installButton);
+            });
+        });
+
+        // Service Worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swCode = `
+                    const CACHE_NAME = 'study-tracker-v1';
+                    const urlsToCache = [
+                        '/',
+                        '/manifest.json'
+                    ];
+
+                    self.addEventListener('install', event => {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(cache => cache.addAll(urlsToCache))
+                        );
+                    });
+
+                    self.addEventListener('fetch', event => {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(response => {
+                                    if (response) {
+                                        return response;
+                                    }
+                                    return fetch(event.request);
+                                })
+                        );
+                    });
+                `;
+
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                
+                navigator.serviceWorker.register(swUrl)
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
