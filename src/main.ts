@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, isDevMode } from "@angular/core";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
@@ -21,6 +21,7 @@ import {
   UserStreak,
 } from "./models/study-tracker.models";
 import { WeeklyViewComponent } from "./components/weekly-view/weekly-view.component";
+import { provideServiceWorker } from '@angular/service-worker';
 
 @Component({
   selector: "app-root",
@@ -1236,5 +1237,11 @@ export class App implements OnInit, OnDestroy {
 }
 
 bootstrapApplication(App, {
-  providers: [],
+  providers: [provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          })],
 }).catch((err) => console.error(err));
