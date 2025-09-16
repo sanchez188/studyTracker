@@ -1,0 +1,58 @@
+{
+  "configVersion": 1,
+  "timestamp": 1758062964083,
+  "index": "/studyTracker/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/studyTracker/index.html",
+        "/studyTracker/main-PAXKQ7DN.js",
+        "/studyTracker/polyfills-5CFQRCPP.js",
+        "/studyTracker/styles-ZONPNHZH.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/studyTracker/index.html": "8fd123ab65f7f62b63b41a0bb931fbbfccc7d75a",
+    "/studyTracker/main-PAXKQ7DN.js": "8475fe0e8c8de926ee540f703f243783cc8205c6",
+    "/studyTracker/polyfills-5CFQRCPP.js": "f2241e9a25858f895ce299d15f6f22e849e2fd72",
+    "/studyTracker/styles-ZONPNHZH.css": "614848ddc567f416bed2e336fa80ab85bb8395fe"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
